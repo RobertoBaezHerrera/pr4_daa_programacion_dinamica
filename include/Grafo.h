@@ -20,8 +20,13 @@
   
 class Grafo {
  public:
+  // Constructor
   Grafo(std::string fichero_entrada);
-  
+
+  // Getters
+  int GetNumeroNodos() const { return numero_nodos_; }
+  std::map<std::string, std::map<std::string, int>> GetMatrizCostes() const { return matriz_costes_; }
+  int GetCoste(std::string nodo_origen, std::string nodo_destino) const;
 
  private:
   std::map<std::string, std::map<std::string, int>> matriz_costes_;
