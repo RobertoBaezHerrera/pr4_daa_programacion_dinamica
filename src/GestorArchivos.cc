@@ -19,6 +19,7 @@ void GestorArchivos::LeerNombresFicherosEntrada() {
       cada_fichero = archivo->d_name;
       // Excluir las entradas especiales "." y ".."
       if (cada_fichero != "." && cada_fichero != "..") {
+        cada_fichero = ruta_directorio_ + "/" + cada_fichero;
         ficheros_entrada_.push_back(cada_fichero);
       }
     }

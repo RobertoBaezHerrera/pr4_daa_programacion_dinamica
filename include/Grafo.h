@@ -16,6 +16,7 @@
   #include <string>
   #include <fstream>
   #include <vector>
+  #include <map>
   
 class Grafo {
  public:
@@ -23,6 +24,6 @@ class Grafo {
   
 
  private:
-  std::vector<std::vector<int>> matriz_costes_;
-  std::vector<std::string> nombres_nodos_;
+  std::map<std::string, std::map<std::string, int>> matriz_costes_;
+  int numero_nodos_;
 };

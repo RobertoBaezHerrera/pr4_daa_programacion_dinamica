@@ -51,7 +51,7 @@ void Usage(int argc, char* argv[]) {
         GestorArchivos gestor{ruta_directorio, fichero_salida};
         gestor.LeerNombresFicherosEntrada();
         for (auto& fichero : gestor.GetFicherosEntrada()) {
-          Grafos grafo{fichero};
+          Grafo grafo{fichero};
         }
         
         
