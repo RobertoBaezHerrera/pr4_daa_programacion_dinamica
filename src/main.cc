@@ -15,6 +15,10 @@
 
 #include "../include/GestorArchivos.h"
 #include "../include/Grafo.h"
+#include "../include/AlgoritmoFuerzaBruta.h"
+#include "../include/AlgoritmoVoraz.h"
+#include "../include/AlgoritmoProgramacionDinamica.h"
+#include "../include/ContextoTSP.h"
 
 const std::string kTextoAyuda = "Uso: pr4_TCP <ruta_directorio> <fichero_salida.txt>\n\n"
     "Resuelve el TSP de 3 formas diferentes: fuerza bruta, voraz y programación dinámica.\n"
@@ -43,24 +47,50 @@ void Usage(int argc, char* argv[]) {
     }
   }
 
-  void Ejecutar(int argc, char* argv[]) {
-    std::cout << "Programa ejecutado\n\n";
+  void EjecutarAlgorimtos(std::string fichero_entrada, std::string fichero_salida) {
+    Grafo grafo{fichero_entrada};
+    ContextoTSP contexto;
+    AlgoritmoFuerzaBruta* fuerza_bruta = new AlgoritmoFuerzaBruta();
+    // AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
+    // AlgoritmoProgramacionDinamica* programacion_dinamica = new AlgoritmoProgramacionDinamica();
+
+    contexto.set_estrategia(fuerza_bruta);
+    ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
+
+    resultado_fuerza_bruta.ImprimirResultado();
+
+    /* contexto.set_estrategia(&voraz);
+    ResultadoTSP resultado_voraz = contexto.calcular(grafo);
+
+    contexto.set_estrategia(&programacion_dinamica);
+    ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo); */
+
+    /* ImprimirTabla tabla{fichero_salida};
+    tabla.ImprimirCabecera();
+    tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_programacion_dinamica); */
+  }
+
+  void LeerFicheros(int argc, char* argv[]) {
+    // tabla.ImprimirCabecera();
     if (argc == 3) {
         std::string ruta_directorio{argv[1]};
         std::string fichero_salida{argv[2]};
         GestorArchivos gestor{ruta_directorio, fichero_salida};
         gestor.LeerNombresFicherosEntrada();
         for (auto& fichero : gestor.GetFicherosEntrada()) {
-          Grafo grafo{fichero};
+          EjecutarAlgorimtos(fichero, fichero_salida);
+
         }
-        
-        
+      // En cada algoritmo creas un objeto ResultadoTSP vacio, empiezas y paras tiempo, seteas valor y camino, y devuelves ese objeto, y luego añadir el ResultadoTSP junto los ficheros de entrada en ImprimirTabla
+      // delete alg1;
+      // delete alg2;
+      // delete alg3;
       return;
     }
   }
 
 int main(int argc, char* argv[]) {
     Usage(argc, argv);
-    Ejecutar(argc, argv);
+    LeerFicheros(argc, argv);
     return 0;
 }
