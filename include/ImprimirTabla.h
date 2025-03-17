@@ -16,8 +16,8 @@ class ImprimirTabla {
   void ImprimirCabecera();
 
   // Imprime los resultados de los algoritmos
-  void ImprimirResultados(ResultadoTSP resultado_fuerza_bruta, ResultadoTSP resultado_voraz, ResultadoTSP resultado_programacion_dinamica);
+  void ImprimirResultados(ResultadoTSP resultado_fuerza_bruta, ResultadoTSP resultado_voraz, ResultadoTSP resultado_programacion_dinamica, std::string fichero_entrada);
 
  private:
-  std::string fichero_salida_;
+  std::ofstream fichero_salida_;
 };

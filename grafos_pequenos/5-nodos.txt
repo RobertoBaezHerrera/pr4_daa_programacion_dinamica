@@ -1,0 +1,11 @@
+5
+A B 88
+A C 22
+A D 69
+A E 81
+B C 13
+B D 57
+B E 68
+C D 71
+C E 93
+D E 7

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <dirent.h>
+#include <algorithm>
 
 #include "../include/GestorArchivos.h"
 
@@ -25,4 +26,6 @@ void GestorArchivos::LeerNombresFicherosEntrada() {
     }
     closedir(directorio);
   }
+  // Ordenar por nombre de fichero
+  std::sort(ficheros_entrada_.begin(), ficheros_entrada_.end());
 }

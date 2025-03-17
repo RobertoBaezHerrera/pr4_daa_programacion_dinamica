@@ -19,6 +19,7 @@
 #include "../include/AlgoritmoVoraz.h"
 #include "../include/AlgoritmoProgramacionDinamica.h"
 #include "../include/ContextoTSP.h"
+#include "../include/ImprimirTabla.h"
 
 const std::string kTextoAyuda = "Uso: pr4_TCP <ruta_directorio> <fichero_salida.txt>\n\n"
     "Resuelve el TSP de 3 formas diferentes: fuerza bruta, voraz y programación dinámica.\n"
@@ -47,46 +48,41 @@ void Usage(int argc, char* argv[]) {
     }
   }
 
-  void EjecutarAlgorimtos(std::string fichero_entrada, std::string fichero_salida) {
+  void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
     Grafo grafo{fichero_entrada};
     ContextoTSP contexto;
     AlgoritmoFuerzaBruta* fuerza_bruta = new AlgoritmoFuerzaBruta();
     AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
-    // AlgoritmoProgramacionDinamica* programacion_dinamica = new AlgoritmoProgramacionDinamica();
+    AlgoritmoProgramacionDinamica* programacion_dinamica = new AlgoritmoProgramacionDinamica();
 
     contexto.set_estrategia(fuerza_bruta);
     ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
-    resultado_fuerza_bruta.ImprimirResultado();
+    //resultado_fuerza_bruta.ImprimirResultado();
 
     contexto.set_estrategia(voraz);
     ResultadoTSP resultado_voraz = contexto.calcular(grafo);
-    resultado_voraz.ImprimirResultado();
-    /*
-    contexto.set_estrategia(&programacion_dinamica);
-    ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo); */
+    //resultado_voraz.ImprimirResultado();
+    
+    contexto.set_estrategia(programacion_dinamica);
+    ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo);
+    //resultado_programacion_dinamica.ImprimirResultado();
 
-    /* ImprimirTabla tabla{fichero_salida};
-    tabla.ImprimirCabecera();
-    tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_programacion_dinamica, fichero); */
+    tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_programacion_dinamica, fichero_entrada);
 
     delete fuerza_bruta;
     delete voraz;
-    // delete alg3;
-
-
-
-    // MEJORAR MEDICION DE TIEMPO Y CLASE IMPRIMIR TABLA QUE IMPRIMA CABECERA, Y LUEGO CADA RESULTADO DE CADA ALGORITMO
+    delete programacion_dinamica;
   }
 
   void LeerFicheros(int argc, char* argv[]) {
     std::string ruta_directorio{argv[1]};
     std::string fichero_salida{argv[2]};
-    // ImprimirTabla tabla{fichero_salida};
-    // tabla.ImprimirCabecera();
+    ImprimirTabla tabla{fichero_salida};
+    tabla.ImprimirCabecera();
     GestorArchivos gestor{ruta_directorio, fichero_salida};
     gestor.LeerNombresFicherosEntrada();
     for (auto& fichero : gestor.GetFicherosEntrada()) {
-      EjecutarAlgorimtos(fichero, fichero_salida);
+      EjecutarAlgorimtos(fichero, tabla);
     }
     return;
   }

@@ -8,6 +8,9 @@
 
 ResultadoTSP AlgoritmoFuerzaBruta::calcular(Grafo grafo) {
   ResultadoTSP resultado;
+  auto tiempo_inicio = std::chrono::high_resolution_clock::now();  // Iniciar temporizador
+  const auto tiempo_maximo = std::chrono::minutes(5);  // Límite de 5 minutos
+
   resultado.EmpezarTiempo();
 
   std::vector<std::string> nodos;
@@ -21,6 +24,16 @@ ResultadoTSP AlgoritmoFuerzaBruta::calcular(Grafo grafo) {
 
   // Generar todas las permutaciones de nodos
   do {
+    // Verificar si el tiempo límite ha sido excedido
+    auto tiempo_actual = std::chrono::high_resolution_clock::now();
+    if (tiempo_actual - tiempo_inicio > tiempo_maximo) {
+      std::cerr << "Tiempo límite de 5 minutos excedido. Devolviendo el mejor resultado parcial." << std::endl;
+      resultado.SetTiempo(-1);
+      resultado.SetCamino(camino_optimo);
+      resultado.SetCosto(mejor_costo);
+      return resultado;
+    }
+
     int costo_actual = 0;
 
     // Calcular el costo del camino actual
@@ -31,7 +44,6 @@ ResultadoTSP AlgoritmoFuerzaBruta::calcular(Grafo grafo) {
 
     // Volver al nodo de inicio
     int costo_vuelta = grafo.GetCoste(nodos.back(), nodo_inicio); 
-    // si no fuera desde A, nodo_inicio = nodos.front(), y next permutation empiezaría en nodos.begin()
     costo_actual += costo_vuelta;
 
     // Actualizar el mejor costo y camino si es una ruta válida
@@ -41,6 +53,7 @@ ResultadoTSP AlgoritmoFuerzaBruta::calcular(Grafo grafo) {
     }
 
   } while (std::next_permutation(nodos.begin() + 1, nodos.end()));  // Permutar los nodos excepto el inicio
+
   camino_optimo.push_back(nodo_inicio);
 
   resultado.PararTiempo();
@@ -49,4 +62,3 @@ ResultadoTSP AlgoritmoFuerzaBruta::calcular(Grafo grafo) {
 
   return resultado;
 }
-

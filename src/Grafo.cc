@@ -31,5 +31,13 @@ Grafo::Grafo(std::string fichero_entrada) {
 }
 
 int Grafo::GetCoste(std::string nodo_origen, std::string nodo_destino) const {
-  return matriz_costes_.at(nodo_origen).at(nodo_destino);
+  auto it = matriz_costes_.find(nodo_origen);
+  if (it != matriz_costes_.end()) {
+      auto it2 = it->second.find(nodo_destino);
+      if (it2 != it->second.end()) {
+          return it2->second;
+      }
+  }
+  std::cerr << "Error: No se ha encontrado la arista:" << nodo_origen << "->" << nodo_destino << std::endl;
+  exit(EXIT_FAILURE);
 }

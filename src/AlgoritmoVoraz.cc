@@ -11,9 +11,12 @@ ResultadoTSP AlgoritmoVoraz::calcular(Grafo grafo) {
   ResultadoTSP resultado;
   resultado.EmpezarTiempo();
 
+  auto tiempo_inicio = std::chrono::high_resolution_clock::now();  // Iniciar temporizador
+  const auto tiempo_maximo = std::chrono::minutes(5);  // Límite de 5 minutos
+
   std::vector<std::string> nodos;
-  for (const auto& par : grafo.GetMatrizCostes()) {
-    nodos.push_back(par.first);
+  for (const auto& nodo_coste : grafo.GetMatrizCostes()) {
+    nodos.push_back(nodo_coste.first);
   }
 
   std::string nodo_inicio = nodos[0];  // Partimos de la primera ciudad
@@ -24,6 +27,16 @@ ResultadoTSP AlgoritmoVoraz::calcular(Grafo grafo) {
 
   // Mientras no hayamos visitado todos los nodos
   while (visitados.size() < nodos.size()) {
+    // Verificar si el tiempo límite ha sido excedido
+    auto tiempo_actual = std::chrono::high_resolution_clock::now();
+    if (tiempo_actual - tiempo_inicio > tiempo_maximo) {
+      std::cerr << "Tiempo límite de 5 minutos excedido para voraz. Devolviendo el mejor resultado parcial." << std::endl;
+      resultado.SetTiempo(-1);
+      resultado.SetCamino(camino);
+      resultado.SetCosto(costo_total);
+      return resultado;
+    }
+
     std::string siguiente_nodo;
     int menor_distancia = INT_MAX;
 
@@ -48,7 +61,6 @@ ResultadoTSP AlgoritmoVoraz::calcular(Grafo grafo) {
     costo_total += menor_distancia;
     nodo_actual = std::string(siguiente_nodo);
   }
-
 
   // Volver al nodo de inicio
   if (grafo.GetMatrizCostes().at(nodo_actual).count(nodo_inicio)) {

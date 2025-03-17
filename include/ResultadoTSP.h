@@ -13,6 +13,11 @@ class ResultadoTSP {
   void PararTiempo();
   void ImprimirResultado() const;
 
+  // Getters
+  int GetCosto() const { return costo_; }
+  double GetTiempo() const { return tiempo_; }
+  std::vector<std::string> GetCamino() const { return camino_; }
+
   // Setters
   void SetTiempo(int tiempo) { tiempo_ = tiempo; }
   void SetCamino(std::vector<std::string> camino) { camino_ = camino; }
