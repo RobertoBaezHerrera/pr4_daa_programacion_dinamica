@@ -56,7 +56,6 @@ void Usage(int argc, char* argv[]) {
 
     contexto.set_estrategia(fuerza_bruta);
     ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
-
     resultado_fuerza_bruta.ImprimirResultado();
 
     /* contexto.set_estrategia(&voraz);
@@ -67,26 +66,28 @@ void Usage(int argc, char* argv[]) {
 
     /* ImprimirTabla tabla{fichero_salida};
     tabla.ImprimirCabecera();
-    tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_programacion_dinamica); */
+    tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_programacion_dinamica, fichero); */
+
+    delete fuerza_bruta;
+    // delete alg2;
+    // delete alg3;
+
+
+
+    // MEJORAR MEDICION DE TIEMPO Y CLASE IMPRIMIR TABLA QUE IMPRIMA CABECERA, Y LUEGO CADA RESULTADO DE CADA ALGORITMO
   }
 
   void LeerFicheros(int argc, char* argv[]) {
+    std::string ruta_directorio{argv[1]};
+    std::string fichero_salida{argv[2]};
+    // ImprimirTabla tabla{fichero_salida};
     // tabla.ImprimirCabecera();
-    if (argc == 3) {
-        std::string ruta_directorio{argv[1]};
-        std::string fichero_salida{argv[2]};
-        GestorArchivos gestor{ruta_directorio, fichero_salida};
-        gestor.LeerNombresFicherosEntrada();
-        for (auto& fichero : gestor.GetFicherosEntrada()) {
-          EjecutarAlgorimtos(fichero, fichero_salida);
-
-        }
-      // En cada algoritmo creas un objeto ResultadoTSP vacio, empiezas y paras tiempo, seteas valor y camino, y devuelves ese objeto, y luego añadir el ResultadoTSP junto los ficheros de entrada en ImprimirTabla
-      // delete alg1;
-      // delete alg2;
-      // delete alg3;
-      return;
+    GestorArchivos gestor{ruta_directorio, fichero_salida};
+    gestor.LeerNombresFicherosEntrada();
+    for (auto& fichero : gestor.GetFicherosEntrada()) {
+      EjecutarAlgorimtos(fichero, fichero_salida);
     }
+    return;
   }
 
 int main(int argc, char* argv[]) {
