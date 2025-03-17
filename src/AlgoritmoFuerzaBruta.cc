@@ -41,6 +41,7 @@ ResultadoTSP AlgoritmoFuerzaBruta::calcular(Grafo grafo) {
     }
 
   } while (std::next_permutation(nodos.begin() + 1, nodos.end()));  // Permutar los nodos excepto el inicio
+  camino_optimo.push_back(nodo_inicio);
 
   resultado.PararTiempo();
   resultado.SetCamino(camino_optimo);

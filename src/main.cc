@@ -51,16 +51,17 @@ void Usage(int argc, char* argv[]) {
     Grafo grafo{fichero_entrada};
     ContextoTSP contexto;
     AlgoritmoFuerzaBruta* fuerza_bruta = new AlgoritmoFuerzaBruta();
-    // AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
+    AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
     // AlgoritmoProgramacionDinamica* programacion_dinamica = new AlgoritmoProgramacionDinamica();
 
     contexto.set_estrategia(fuerza_bruta);
     ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
     resultado_fuerza_bruta.ImprimirResultado();
 
-    /* contexto.set_estrategia(&voraz);
+    contexto.set_estrategia(voraz);
     ResultadoTSP resultado_voraz = contexto.calcular(grafo);
-
+    resultado_voraz.ImprimirResultado();
+    /*
     contexto.set_estrategia(&programacion_dinamica);
     ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo); */
 
@@ -69,7 +70,7 @@ void Usage(int argc, char* argv[]) {
     tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_programacion_dinamica, fichero); */
 
     delete fuerza_bruta;
-    // delete alg2;
+    delete voraz;
     // delete alg3;
 
 
