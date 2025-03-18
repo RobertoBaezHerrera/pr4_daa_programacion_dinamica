@@ -4,7 +4,7 @@
 #include <chrono>
 #include <climits>
 
-#include "../include/AlgoritmoFuerzaBruta.h"
+#include "../include/Algoritmos/AlgoritmoFuerzaBruta.h"
 
 ResultadoTSP AlgoritmoFuerzaBruta::calcular(Grafo grafo) {
   ResultadoTSP resultado;

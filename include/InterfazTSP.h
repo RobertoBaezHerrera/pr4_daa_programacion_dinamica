@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Grafo.h"
-#include "ResultadoTSP.h"
+#include "./utils/ResultadoTSP.h"
 
 // Interfaz de estrategia
 class InterfazTSP {

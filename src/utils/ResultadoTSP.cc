@@ -1,4 +1,4 @@
-#include "../include/ResultadoTSP.h"
+#include "../include/utils/ResultadoTSP.h"
 
 void ResultadoTSP::EmpezarTiempo() {
   tiempo_ = clock();

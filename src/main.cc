@@ -13,13 +13,13 @@
 #include <iostream>
 #include <string>
 
-#include "../include/GestorArchivos.h"
+#include "../include/utils/GestorArchivos.h"
 #include "../include/Grafo.h"
-#include "../include/AlgoritmoFuerzaBruta.h"
-#include "../include/AlgoritmoVoraz.h"
-#include "../include/AlgoritmoProgramacionDinamica.h"
+#include "../include/Algoritmos/AlgoritmoFuerzaBruta.h"
+#include "../include/Algoritmos/AlgoritmoVoraz.h"
+#include "../include/Algoritmos/AlgoritmoProgramacionDinamica.h"
 #include "../include/ContextoTSP.h"
-#include "../include/ImprimirTabla.h"
+#include "../include/utils/ImprimirTabla.h"
 
 const std::string kTextoAyuda = "Uso: pr4_TCP <ruta_directorio> <fichero_salida.txt>\n\n"
     "Resuelve el TSP de 3 formas diferentes: fuerza bruta, voraz y programación dinámica.\n"

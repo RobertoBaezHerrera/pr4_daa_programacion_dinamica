@@ -1,4 +1,4 @@
-#include "../include/ImprimirTabla.h"
+#include "../include/utils/ImprimirTabla.h"
 #include <iomanip>  // Para std::setw
 
 void ImprimirTabla::ImprimirCabecera() {

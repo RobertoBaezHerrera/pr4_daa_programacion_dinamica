@@ -1,4 +1,4 @@
-#include "../include/AlgoritmoProgramacionDinamica.h"
+#include "../include/Algoritmos/AlgoritmoProgramacionDinamica.h"
 
 #include <algorithm>
 #include <chrono>

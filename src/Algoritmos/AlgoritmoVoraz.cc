@@ -1,4 +1,4 @@
-#include "../include/AlgoritmoVoraz.h"
+#include "../include/Algoritmos/AlgoritmoVoraz.h"
 
 #include <algorithm>
 #include <chrono>

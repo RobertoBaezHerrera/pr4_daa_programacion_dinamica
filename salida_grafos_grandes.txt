@@ -1,0 +1,8 @@
+Instancia           Valor Fuerza Bruta       Tiempo Fuerza Bruta(ms)  Valor Voraz         Tiempo Voraz(ms)    Valor Programación Dinámica Tiempo Programación Dinámica(ms)
+10-nodos.txt        107                      1028.68                  107                 0.547               107                           7.037                         
+11-nodos.txt        251                      10870.6                  302                 0.784               251                           16.78                         
+12-nodos.txt        324                      135989                   369                 1.125               324                           41.487                        
+13-nodos.txt        241                      EXCESIVO                 317                 1.599               241                           107.313                       
+14-nodos.txt        347                      EXCESIVO                 337                 3.746               272                           264.375                       
+15-nodos.txt        438                      EXCESIVO                 454                 2.558               406                           564.378                       
+16-nodos.txt        434                      EXCESIVO                 368                 3.412               228                           1301.17                       

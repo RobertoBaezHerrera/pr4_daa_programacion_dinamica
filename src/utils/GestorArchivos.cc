@@ -3,7 +3,7 @@
 #include <dirent.h>
 #include <algorithm>
 
-#include "../include/GestorArchivos.h"
+#include "../include/utils/GestorArchivos.h"
 
 GestorArchivos::GestorArchivos(std::string ruta_directorio, std::string fichero_salida) {
   ruta_directorio_ = ruta_directorio;
