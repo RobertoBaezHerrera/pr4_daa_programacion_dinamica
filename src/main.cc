@@ -3,11 +3,9 @@
   * Escuela Superior de Ingeniería y Tecnología
   * Grado en Ingeniería Informática
   * Asignatura: Diseño y Análisis de Algoritmos
-  * @file main.cc
   * @author Roberto Báez Herrera, Nailea Fayna Cruz Galván
   * Correo: alu0101497013@ull.edu.es, alu0101477497@ull.edu.es
   * @date 18/03/2025
-  * @brief Programa principal
   */
 
 #include <iostream>
@@ -21,6 +19,7 @@
 #include "../include/ContextoTSP.h"
 #include "../include/utils/ImprimirTabla.h"
 
+// Texto de ayuda
 const std::string kTextoAyuda = "Uso: pr4_TCP <ruta_directorio> <fichero_salida.txt>\n\n"
     "Resuelve el TSP de 3 formas diferentes: fuerza bruta, voraz y programación dinámica.\n"
     "Obtiene los grafos de los ficheros de entrada que estánn el la ruta del directorio.\n"
@@ -46,47 +45,52 @@ void Usage(int argc, char* argv[]) {
       std::cout << "Pruebe '" << argv[0] << " --help' para más información." << std::endl;
       exit(EXIT_SUCCESS);
     }
+}
+
+// Ejecuta los algoritmos y los imprime en la tabla
+void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
+  Grafo grafo{fichero_entrada};
+  ContextoTSP contexto;
+  AlgoritmoFuerzaBruta* fuerza_bruta = new AlgoritmoFuerzaBruta();
+  AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
+  AlgoritmoProgramacionDinamica* programacion_dinamica =
+      new AlgoritmoProgramacionDinamica();
+
+  contexto.set_estrategia(fuerza_bruta);
+  ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
+  // resultado_fuerza_bruta.ImprimirResultado();
+
+  contexto.set_estrategia(voraz);
+  ResultadoTSP resultado_voraz = contexto.calcular(grafo);
+  // resultado_voraz.ImprimirResultado();
+
+  contexto.set_estrategia(programacion_dinamica);
+  ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo);
+  // resultado_programacion_dinamica.ImprimirResultado();
+
+  tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz,
+                           resultado_programacion_dinamica, fichero_entrada);
+
+  delete fuerza_bruta;
+  delete voraz;
+  delete programacion_dinamica;
+}
+
+// Lee los ficheros de entrada y ejecuta los algoritmos
+void LeerFicheros(int argc, char* argv[]) {
+  std::string ruta_directorio{argv[1]};
+  std::string fichero_salida{argv[2]};
+  ImprimirTabla tabla{fichero_salida};
+  tabla.ImprimirCabecera();
+  GestorArchivos gestor{ruta_directorio, fichero_salida};
+  gestor.LeerNombresFicherosEntrada();
+  for (auto& fichero : gestor.GetFicherosEntrada()) {
+    EjecutarAlgorimtos(fichero, tabla);
   }
+  return;
+}
 
-  void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
-    Grafo grafo{fichero_entrada};
-    ContextoTSP contexto;
-    AlgoritmoFuerzaBruta* fuerza_bruta = new AlgoritmoFuerzaBruta();
-    AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
-    AlgoritmoProgramacionDinamica* programacion_dinamica = new AlgoritmoProgramacionDinamica();
-
-    contexto.set_estrategia(fuerza_bruta);
-    ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
-    //resultado_fuerza_bruta.ImprimirResultado();
-
-    contexto.set_estrategia(voraz);
-    ResultadoTSP resultado_voraz = contexto.calcular(grafo);
-    //resultado_voraz.ImprimirResultado();
-    
-    contexto.set_estrategia(programacion_dinamica);
-    ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo);
-    //resultado_programacion_dinamica.ImprimirResultado();
-
-    tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_programacion_dinamica, fichero_entrada);
-
-    delete fuerza_bruta;
-    delete voraz;
-    delete programacion_dinamica;
-  }
-
-  void LeerFicheros(int argc, char* argv[]) {
-    std::string ruta_directorio{argv[1]};
-    std::string fichero_salida{argv[2]};
-    ImprimirTabla tabla{fichero_salida};
-    tabla.ImprimirCabecera();
-    GestorArchivos gestor{ruta_directorio, fichero_salida};
-    gestor.LeerNombresFicherosEntrada();
-    for (auto& fichero : gestor.GetFicherosEntrada()) {
-      EjecutarAlgorimtos(fichero, tabla);
-    }
-    return;
-  }
-
+// Programa principal
 int main(int argc, char* argv[]) {
     Usage(argc, argv);
     LeerFicheros(argc, argv);

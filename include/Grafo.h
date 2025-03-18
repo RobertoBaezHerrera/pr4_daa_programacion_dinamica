@@ -3,21 +3,20 @@
   * Escuela Superior de Ingeniería y Tecnología
   * Grado en Ingeniería Informática
   * Asignatura: Diseño y Análisis de Algoritmos
-  * @file main.cc
   * @author Roberto Báez Herrera, Nailea Fayna Cruz Galván
   * Correo: alu0101497013@ull.edu.es, alu0101477497@ull.edu.es
   * @date 18/03/2025
-  * @brief Programa principal
   */
 
-  #pragma once
+#pragma once
 
-  #include <iostream>
-  #include <string>
-  #include <fstream>
-  #include <vector>
-  #include <map>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <vector>
+#include <map>
   
+// Clase que representa un grafo
 class Grafo {
  public:
   // Constructor

@@ -3,11 +3,9 @@
   * Escuela Superior de Ingeniería y Tecnología
   * Grado en Ingeniería Informática
   * Asignatura: Diseño y Análisis de Algoritmos
-  * @file main.cc
   * @author Roberto Báez Herrera, Nailea Fayna Cruz Galván
   * Correo: alu0101497013@ull.edu.es, alu0101477497@ull.edu.es
   * @date 18/03/2025
-  * @brief Programa principal
   */
 
 #pragma once
@@ -17,6 +15,7 @@
 #include <fstream>
 #include <vector>
 
+// Clase que obtiene los nombres de los ficheros de entrada dada una ruta
 class GestorArchivos {
  public:
   GestorArchivos(std::string ruta_directorio, std::string fichero_salida);
