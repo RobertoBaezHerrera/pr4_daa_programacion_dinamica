@@ -20,5 +20,5 @@
 class AlgoritmoProgramacionDinamica : public InterfazTSP {
  public:
   // Método para resolver el problema TSP por programación dinámica
-  ResultadoTSP calcular(Grafo grafo) override;
+  ResultadoTSP calcular(Grafo grafo, std::vector<std::string> nodos_modi) override;
 };

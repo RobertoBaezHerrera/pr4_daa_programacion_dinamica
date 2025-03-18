@@ -20,5 +20,5 @@
 class AlgoritmoFuerzaBruta : public InterfazTSP {
  public:
   // Método para resolver el problema TSP por fuerza bruta
-  ResultadoTSP calcular(Grafo grafo) override;
+  ResultadoTSP calcular(Grafo grafo, std::vector<std::string> nodos_modi) override;
 };

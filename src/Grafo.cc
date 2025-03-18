@@ -48,6 +48,21 @@ int Grafo::GetCoste(std::string nodo_origen, std::string nodo_destino) const {
           return it2->second;
       }
   }
-  std::cerr << "Error: No se ha encontrado la arista:" << nodo_origen << "->" << nodo_destino << std::endl;
+  return 0;
   exit(EXIT_FAILURE);
+}
+
+Grafo Grafo::Subgrafo(std::vector<std::string> nodos) const {
+  Grafo subgrafo;
+  subgrafo.SetNumeroNodos(nodos.size());
+  for (int i = 0; i < nodos.size(); ++i) {
+    for (int j = 0; j < nodos.size(); ++j) {
+      std::string nodo_origen = nodos[i];
+      std::string nodo_destino = nodos[j];
+      if (matriz_costes_.count(nodo_origen) && matriz_costes_.at(nodo_origen).count(nodo_destino)) {
+        subgrafo.matriz_costes_[nodo_origen][nodo_destino] = matriz_costes_.at(nodo_origen).at(nodo_destino);
+      }
+    }
+  }
+  return subgrafo;
 }

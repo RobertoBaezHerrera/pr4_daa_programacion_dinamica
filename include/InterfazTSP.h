@@ -20,6 +20,6 @@
 // Interfaz de estrategia
 class InterfazTSP {
  public:
-  virtual ResultadoTSP calcular(Grafo grafo) = 0;
+  virtual ResultadoTSP calcular(Grafo grafo, std::vector<std::string> nodos_modi = std::vector<std::string>()) = 0;
   virtual ~InterfazTSP() { }
-};
+};;

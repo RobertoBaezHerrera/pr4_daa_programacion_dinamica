@@ -20,12 +20,20 @@
 class Grafo {
  public:
   // Constructor
+  Grafo() = default;
   Grafo(std::string fichero_entrada);
 
   // Getters
   int GetNumeroNodos() const { return numero_nodos_; }
   std::map<std::string, std::map<std::string, int>> GetMatrizCostes() const { return matriz_costes_; }
   int GetCoste(std::string nodo_origen, std::string nodo_destino) const;
+
+  // Setters
+  void SetMatrizCostes(std::map<std::string, std::map<std::string, int>> matriz_costes) { matriz_costes_ = matriz_costes; }
+  void SetNumeroNodos(int numero_nodos) { numero_nodos_ = numero_nodos; }
+
+  // Devuelve un subgrafo con los nodos indicados
+  Grafo Subgrafo(std::vector<std::string> nodos) const;
 
  private:
   std::map<std::string, std::map<std::string, int>> matriz_costes_;

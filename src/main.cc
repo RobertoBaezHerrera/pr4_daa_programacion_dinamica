@@ -16,6 +16,7 @@
 #include "../include/Algoritmos/AlgoritmoFuerzaBruta.h"
 #include "../include/Algoritmos/AlgoritmoVoraz.h"
 #include "../include/Algoritmos/AlgoritmoProgramacionDinamica.h"
+#include "../include/Algoritmos/AlgoritmoMixto.h"
 #include "../include/ContextoTSP.h"
 #include "../include/utils/ImprimirTabla.h"
 
@@ -53,8 +54,8 @@ void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
   ContextoTSP contexto;
   AlgoritmoFuerzaBruta* fuerza_bruta = new AlgoritmoFuerzaBruta();
   AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
-  AlgoritmoProgramacionDinamica* programacion_dinamica =
-      new AlgoritmoProgramacionDinamica();
+  AlgoritmoProgramacionDinamica* programacion_dinamica = new AlgoritmoProgramacionDinamica();
+  AlgoritmoMixto* mixto = new AlgoritmoMixto();
 
   contexto.set_estrategia(fuerza_bruta);
   ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
@@ -68,8 +69,12 @@ void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
   ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo);
   // resultado_programacion_dinamica.ImprimirResultado();
 
+  contexto.set_estrategia(mixto);
+  ResultadoTSP resultado_mixto = contexto.calcular(grafo);
+  // resultado_mixto.ImprimirResultado();
+
   tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz,
-                           resultado_programacion_dinamica, fichero_entrada);
+                           resultado_programacion_dinamica, resultado_mixto, fichero_entrada);
 
   delete fuerza_bruta;
   delete voraz;

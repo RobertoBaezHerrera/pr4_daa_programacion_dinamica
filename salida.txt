@@ -1,8 +1,8 @@
-Instancia           Valor Fuerza Bruta       Tiempo Fuerza Bruta(ms)  Valor Voraz         Tiempo Voraz(ms)    Valor Programación Dinámica Tiempo Programación Dinámica(ms)
-3-nodos.txt         56                       0.02                     56                  0.049               56                            0.033                         
-4-nodos.txt         55                       0.038                    85                  0.062               55                            0.054                         
-5-nodos.txt         179                      0.132                    180                 0.114               179                           0.113                         
-6-nodos.txt         316                      0.431                    352                 0.184               316                           0.31                          
-7-nodos.txt         129                      2.973                    179                 0.317               129                           0.791                         
-8-nodos.txt         233                      31.652                   294                 0.774               233                           3.256                         
-9-nodos.txt         239                      139.375                  248                 0.357               239                           2.652                         
+Instancia      Valor FB       Tiempo FB(ms)  Valor Voraz    Tiempo Voraz(ms)Valor PD            Tiempo PD(ms)       Valor Mixto    Tiempo Mixto(ms)
+3-nodos.txt    4              0.017          56             0.038          56                  0.027               160            0.086          
+4-nodos.txt    30             0.025          85             0.062          55                  0.05                100            0.106          
+5-nodos.txt    99             0.072          180            0.117          179                 0.137               302            0.297          
+6-nodos.txt    258            0.38           352            0.212          316                 0.294               611            2.201          
+7-nodos.txt    77             2.533          179            0.316          129                 0.796               285            14.151         
+8-nodos.txt    179            26.323         294            0.444          233                 1.921               452            59.805         
+9-nodos.txt    192            152.613        248            0.599          239                 4.61                425            885.152        

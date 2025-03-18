@@ -17,7 +17,7 @@
 #include <unordered_set>
 #include <vector>
 
-ResultadoTSP AlgoritmoVoraz::calcular(Grafo grafo) {
+ResultadoTSP AlgoritmoVoraz::calcular(Grafo grafo, std::vector<std::string> nodos_modi) {
   ResultadoTSP resultado;
   resultado.EmpezarTiempo();
 
