@@ -15,6 +15,7 @@
 #include "../include/Grafo.h"
 #include "../include/Algoritmos/AlgoritmoFuerzaBruta.h"
 #include "../include/Algoritmos/AlgoritmoVoraz.h"
+#include "../include/Algoritmos/AlgoritmoVorazMedio.h"
 #include "../include/Algoritmos/AlgoritmoProgramacionDinamica.h"
 #include "../include/ContextoTSP.h"
 #include "../include/utils/ImprimirTabla.h"
@@ -53,8 +54,8 @@ void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
   ContextoTSP contexto;
   AlgoritmoFuerzaBruta* fuerza_bruta = new AlgoritmoFuerzaBruta();
   AlgoritmoVoraz* voraz = new AlgoritmoVoraz();
-  AlgoritmoProgramacionDinamica* programacion_dinamica =
-      new AlgoritmoProgramacionDinamica();
+  AlgoritmoProgramacionDinamica* programacion_dinamica = new AlgoritmoProgramacionDinamica();
+  AlgoritmoVorazMedio* voraz_medio = new AlgoritmoVorazMedio();
 
   contexto.set_estrategia(fuerza_bruta);
   ResultadoTSP resultado_fuerza_bruta = contexto.calcular(grafo);
@@ -67,6 +68,10 @@ void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
   contexto.set_estrategia(programacion_dinamica);
   ResultadoTSP resultado_programacion_dinamica = contexto.calcular(grafo);
   // resultado_programacion_dinamica.ImprimirResultado();
+
+  contexto.set_estrategia(voraz_medio);
+  ResultadoTSP resultado_voraz_medio = contexto.calcular(grafo);
+  resultado_voraz_medio.ImprimirResultado();
 
   tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz,
                            resultado_programacion_dinamica, fichero_entrada);
