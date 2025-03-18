@@ -25,7 +25,7 @@ Para compilar el proyecto, asegúrate de tener instalado `g++` y sigue estos pas
 
 ## Modo de ejecución
    ```bash
-   ./bin/pr4
+   ./bin/pr4 grafos_pequenos salida.txt
 ```
 
 ## Estructura del proyecto
@@ -53,26 +53,3 @@ Para compilar el proyecto, asegúrate de tener instalado `g++` y sigue estos pas
    - `README.md`: Archivo de documentación del proyecto.
 
 Esta estructura es clara y modular, lo que facilita la organización y el mantenimiento del proyecto.### Explicación
-
-1. **`include/`**:
-   - Contiene los archivos de cabecera (`.h`) organizados en subcarpetas:
-     - `Algoritmos/`: Archivos de cabecera para los algoritmos implementados.
-     - `utils/`: Archivos de cabecera para utilidades como gestión de archivos y resultados.
-
-2. **`src/`**:
-   - Contiene los archivos fuente (`.cc`) organizados en subcarpetas:
-     - `Algoritmos/`: Implementaciones de los algoritmos.
-     - `utils/`: Implementaciones de utilidades.
-
-3. **`bin/`**:
-   - Carpeta donde se genera el ejecutable (`pr4`).
-
-4. **`build/`**:
-   - Carpeta donde se generan los archivos objeto (`.o`).
-
-5. **Otros archivos**:
-   - `Makefile`: Archivo para compilar el proyecto.
-   - `salida.txt` y `salida_grafos_grandes.txt`: Archivos de salida con los resultados de los algoritmos.
-   - `README.md`: Archivo de documentación del proyecto.
-
-Esta estructura es clara y modular, lo que facilita la organización y el mantenimiento del proyecto.
