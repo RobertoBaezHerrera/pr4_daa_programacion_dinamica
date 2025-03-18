@@ -71,13 +71,14 @@ void EjecutarAlgorimtos(std::string fichero_entrada, ImprimirTabla& tabla) {
 
   contexto.set_estrategia(voraz_medio);
   ResultadoTSP resultado_voraz_medio = contexto.calcular(grafo);
-  resultado_voraz_medio.ImprimirResultado();
+  //resultado_voraz_medio.ImprimirResultado();
 
-  tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz,
+  tabla.ImprimirResultados(resultado_fuerza_bruta, resultado_voraz, resultado_voraz_medio,
                            resultado_programacion_dinamica, fichero_entrada);
 
   delete fuerza_bruta;
   delete voraz;
+  delete voraz_medio;
   delete programacion_dinamica;
 }
 

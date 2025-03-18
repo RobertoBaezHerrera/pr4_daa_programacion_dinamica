@@ -52,8 +52,7 @@ ResultadoTSP AlgoritmoVorazMedio::calcular(Grafo grafo) {
     // Buscar todas las ciudades no visitadas y sus distancias
     for (int i = 0; i < nodos.size(); i++) {
       std::string vecino = nodos[i];
-      if (visitados.find(vecino) == visitados.end() &&
-          grafo.GetMatrizCostes().at(nodo_actual).count(vecino)) {
+      if (visitados.find(vecino) == visitados.end() && grafo.GetMatrizCostes().at(nodo_actual).count(vecino)) {
         int distancia = grafo.GetCoste(nodo_actual, vecino);
         distancias.push_back({distancia, vecino});
       }

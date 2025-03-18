@@ -19,11 +19,13 @@ void ImprimirTabla::ImprimirCabecera() {
     fichero_salida_ << std::setw(25) << "Tiempo Fuerza Bruta(ms)";
     fichero_salida_ << std::setw(20) << "Valor Voraz";
     fichero_salida_ << std::setw(20) << "Tiempo Voraz(ms)";
+    fichero_salida_ << std::setw(20) << "Valor Voraz Medio";
+    fichero_salida_ << std::setw(20) << "Tiempo Voraz Medio(ms)";
     fichero_salida_ << std::setw(30) << "Valor Programación Dinámica";
     fichero_salida_ << std::setw(30) << "Tiempo Programación Dinámica(ms)" << std::endl;
 }
 
-void ImprimirTabla::ImprimirResultados(ResultadoTSP resultado_fuerza_bruta, ResultadoTSP resultado_voraz, ResultadoTSP resultado_programacion_dinamica, std::string fichero_entrada) {
+void ImprimirTabla::ImprimirResultados(ResultadoTSP resultado_fuerza_bruta, ResultadoTSP resultado_voraz, ResultadoTSP resultado_voraz_medio, ResultadoTSP resultado_programacion_dinamica, std::string fichero_entrada) {
     // Quitar la ruta del fichero
     fichero_entrada = fichero_entrada.substr(fichero_entrada.find_last_of("/") + 1);
 
@@ -41,6 +43,12 @@ void ImprimirTabla::ImprimirResultados(ResultadoTSP resultado_fuerza_bruta, Resu
       fichero_salida_ << std::setw(20) << "EXCESIVO";
     } else {
       fichero_salida_ << std::setw(20) << resultado_voraz.GetTiempo() * 1000;  // Convertir a ms
+    }
+    fichero_salida_ << std::setw(20) << resultado_voraz_medio.GetCosto();
+    if (resultado_voraz_medio.GetTiempo() == -1) {
+      fichero_salida_ << std::setw(20) << "EXCESIVO";
+    } else {
+      fichero_salida_ << std::setw(20) << resultado_voraz_medio.GetTiempo() * 1000;  // Convertir a ms
     }
     fichero_salida_ << std::setw(30) << resultado_programacion_dinamica.GetCosto();
     if (resultado_programacion_dinamica.GetTiempo() == -1) {
